@@ -1,0 +1,34 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'sreesmere.com'
+theme = 'PaperMod'
+
+[params]
+    [params.homeInfoParams]
+    Title = "Into the messy beads in sreesmere"
+    Content = "I am a robotic software engineer working on helping robots to answer the where am I question. I used to have a blog when I was in my undergrad to dump my rants somewhere. With everything bottled up in me since I stopped doing it I had to start one now. For those wondering what sreesmere is well... its cosmere but with sree. Get it? Get it? Get it?👾🕸️"
+    
+    [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/sreeharshacs"
+    
+    [[params.socialIcons]]
+    name = "github" 
+    url = "https://github.com/cssharsha"
+    
+    [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/sree-harsha-c-s/"
+
+[menu]
+    [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+    
+    [[menu.main]]
+    identifier = "posts"
+    name = "Blog"
+    url = "/posts/"
+    weight = 20
