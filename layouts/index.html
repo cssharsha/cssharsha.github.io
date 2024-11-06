@@ -6,22 +6,44 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
+{{ $options := dict 
+    "method" "POST"
+    "headers" (dict "Content-Type" "application/graphql")
+    "body" `{
+        repositories {
+            id
+            name
+            description
+            url
+            homepageUrl
+        }
+    }`
+}}
+
 <div class="projects-section">
     <h2>Projects</h2>
     <div class="portfolio-projects">
-        <div class="project">
-            <div class="project-header">
-                <i class="fa-regular fa-folder-open folder-icon"></i>
-                <div class="small-icons">
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-            </div>
-            <h3>Project Title</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed saepe adipisci nostrum. Voluptatem tempore
-                porro deserunt cupiditate. Dolores sequi, eveniet enim amet sapiente voluptatibus, libero, impedit
-                tempora ullam alias iure?</p>
-        </div>
+        {{ with resources.GetRemote "https://api-us-west-2.hygraph.com/v2/cm2ttghvc01qc07w3t30f4db5/master" $options }}
+            {{ with .Content }}
+                {{ with transform.Unmarshal . }}
+                    {{ with .data.repositories }}
+                        {{ range . }}
+                            <div class="project">
+                                <div class="project-header">
+                                    <i class="fa-regular fa-folder-open folder-icon"></i>
+                                    <div class="small-icons">
+                                        <a href={{ .url }}><i class="fa-brands fa-github"></i></a>
+                                    </div>
+                                </div>
+                                <h3>{{ .name }}</h3>
+                                <p>{{ .description }}</p>
+                            </div>
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
     </div>
 </div>
+
 {{- end }}

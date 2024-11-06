@@ -1,1 +1,4 @@
 docker/.env
+.gitactions
+.gitactions-bkp
+.env
