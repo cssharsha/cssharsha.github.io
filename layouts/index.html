@@ -6,6 +6,21 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
+<div class="categories-section">
+    <h1>Blog</h1>
+    <br>
+    <p>You were forewarned that this is a dumping yard for my rants. But I do provide the option to chose which garbage you'd want to red-pill about.</p>
+    <br>
+    <div class="category-grid">
+        {{ range .Site.Taxonomies.categories }}
+        <a href="{{ .Page.RelPermalink }}" class="category-card">
+            <h2>{{ .Page.Title }}</h2>
+            <span class="post-count">{{ .Count }} posts</span>
+        </a>
+        {{ end }}
+    </div>
+</div>
+
 {{ $options := dict 
     "method" "POST"
     "headers" (dict "Content-Type" "application/graphql")

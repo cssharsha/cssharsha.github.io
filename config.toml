@@ -6,7 +6,7 @@ theme = 'PaperMod'
 [params]
     [params.homeInfoParams]
     Title = "Into the messy beads in sreesmere"
-    Content = "I try to help robots answer where am I question. Reopning the dump yard here for my rants after a long time. What is sreesmere you ask? Well...its cosmere but with sree. Get it? Get it? Get it? Showing off my goodreads profile if you havent noticed. 👾🕸️"
+    Content = "I try to help robots answer where am I question. In my spare time I read a lot of SFF, brew some beer, hike mounds and run roads. I used to have one but am reopning the dump yard again for my rants after a long time. What is sreesmere you ask? Well...its cosmere but with sree. Get it? Anyways there's a link to my goodreads profile if you haven't noticed. 👾🕸️"
     
     [[params.socialIcons]]
     name = "twitter"
@@ -36,3 +36,7 @@ theme = 'PaperMod'
     name = "Blog"
     url = "/posts/"
     weight = 20
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

@@ -1,0 +1,29 @@
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--gap);
+    margin: var(--gap) 0;
+}
+
+.category-card {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--gap);
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+}
+
+.category-card h2 {
+    margin: 0;
+    color: var(--primary);
+}
+
+.post-count {
+    color: var(--secondary);
+    font-size: 0.9rem;
+}
