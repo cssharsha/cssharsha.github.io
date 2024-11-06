@@ -6,7 +6,7 @@ theme = 'PaperMod'
 [params]
     [params.homeInfoParams]
     Title = "Into the messy beads in sreesmere"
-    Content = "I try to help robots answer where am I question. Reopning the dump yard here for my rants after a long time. What is sreesmere you ask? Well...its cosmere but with sree. Get it? Get it? Get it?👾🕸️"
+    Content = "I try to help robots answer where am I question. Reopning the dump yard here for my rants after a long time. What is sreesmere you ask? Well...its cosmere but with sree. Get it? Get it? Get it? Showing off my goodreads profile if you havent noticed. 👾🕸️"
     
     [[params.socialIcons]]
     name = "twitter"
@@ -19,6 +19,10 @@ theme = 'PaperMod'
     [[params.socialIcons]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/sree-harsha-c-s/"
+    
+    [[params.socialIcons]]
+    name = "goodreads" 
+    url = "https://www.goodreads.com/cssharsha"
 
 [menu]
     [[menu.main]]
