@@ -1,67 +1,131 @@
 {{- define "main" }}
-{{- $pages := union .RegularPages .Sections }}
-{{- $paginator := .Paginate $pages }}
 
-{{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
-{{- end }}
+<!-- Matrix Background -->
+<div class="matrix-container" id="matrix-bg">
+    <div class="shadesmar-particles" id="particles"></div>
+</div>
 
-<div class="categories-section">
-    <h1>Blog</h1>
-    <br>
-    <p>You were forewarned that this is a dumping yard for my rants. But I do provide the option to chose which garbage you'd want to red-pill about.</p>
-    <br>
+<!-- Hero Section -->
+<section class="matrix-hero">
+    <div class="hero-content">
+        <div class="profile-image">
+            {{ $image := resources.Get "images/sreesmere.jpg" }}
+            {{ if $image }}
+            <img src="{{ $image.RelPermalink }}" alt="Sree Harsha" class="profile-pic">
+            {{ else }}
+            <img src="/assets/images/sreesmere.jpg" alt="Sree Harsha" class="profile-pic">
+            {{ end }}
+        </div>
+        <p class="matrix-subtitle">{{ site.Params.homeInfoParams.Content }}</p>
+    </div>
+    
+    <!-- Social Links in Hero -->
+    <div class="hero-social-links">
+        {{ range site.Params.socialIcons }}
+        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-{{ .name }}"></i>
+        </a>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Blog Categories Section -->
+<section class="clean-section blog-section">
+    <h2 class="section-title">Blog</h2>
+    <p class="section-description">You were forewarned that this is a dumping yard for my rants. But I do provide the option to chose which garbage you'd want to red-pill about.</p>
     <div class="category-grid">
         {{ range .Site.Taxonomies.categories }}
         <a href="{{ .Page.RelPermalink }}" class="category-card">
-            <h2>{{ .Page.Title }}</h2>
+            <h3>{{ .Page.Title }}</h3>
             <span class="post-count">{{ .Count }} posts</span>
         </a>
         {{ end }}
     </div>
-</div>
+</section>
 
-{{ $options := dict 
-    "method" "POST"
-    "headers" (dict "Content-Type" "application/graphql")
-    "body" `{
-        repositories {
-            id
-            name
-            description
-            url
-            homepageUrl
-        }
-    }`
-}}
-
-<div class="projects-section">
-    <h2>Projects</h2>
-    <br>
-    <p>I like adding a list of github links. It satiates my OCD. These are mine.</p>
-    <br>
+<!-- Projects Section -->
+<section class="clean-section projects-section">
+    <h2 class="section-title">Projects</h2>
+    <p class="section-description">I like adding a list of github links. It satiates my OCD. These are mine.</p>
     <div class="portfolio-projects">
-        {{ with resources.GetRemote "https://api-us-west-2.hygraph.com/v2/cm2ttghvc01qc07w3t30f4db5/master" $options }}
+        {{ $githubUser := "cssharsha" }}
+        {{ with resources.GetRemote (printf "https://api.github.com/users/%s/repos?sort=updated&direction=desc&per_page=12" $githubUser) }}
             {{ with .Content }}
-                {{ with transform.Unmarshal . }}
-                    {{ with .data.repositories }}
-                        {{ range . }}
-                            <div class="project">
-                                <div class="project-header">
-                                    <i class="fa-regular fa-folder-open folder-icon"></i>
-                                    <div class="small-icons">
-                                        <a href={{ .url }}><i class="fa-brands fa-github"></i></a>
-                                    </div>
+                {{ $repos := transform.Unmarshal . }}
+                {{ range $repos }}
+                    {{ if not .fork }}
+                        <div class="project">
+                            <div class="project-header">
+                                <i class="fa-regular fa-folder-open folder-icon"></i>
+                                <div class="small-icons">
+                                    <a href="{{ .html_url }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                    {{ if .homepage }}
+                                    <a href="{{ .homepage }}" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-solid fa-external-link-alt"></i>
+                                    </a>
+                                    {{ end }}
                                 </div>
-                                <h3>{{ .name }}</h3>
-                                <p>{{ .description }}</p>
                             </div>
-                        {{ end }}
+                            <h3>{{ .name }}</h3>
+                            <p>{{ .description | default "No description available" }}</p>
+                            <div class="project-meta">
+                                {{ if .language }}
+                                <span class="project-language">{{ .language }}</span>
+                                {{ end }}
+                                <span class="project-updated">Updated {{ .updated_at | time.Format "Jan 2, 2006" }}</span>
+                            </div>
+                        </div>
                     {{ end }}
                 {{ end }}
             {{ end }}
         {{ end }}
     </div>
-</div>
+</section>
+
+<script>
+// Matrix animation
+function createMatrix() {
+    const container = document.getElementById('matrix-bg');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+    
+    for (let i = 0; i < 20; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = Math.random() * 100 + '%';
+        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDelay = Math.random() * 2 + 's';
+        
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+            text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+        }
+        column.innerHTML = text;
+        
+        container.appendChild(column);
+    }
+}
+
+// Floating particles
+function createParticles() {
+    const container = document.getElementById('particles');
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(particle);
+    }
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    createMatrix();
+    createParticles();
+});
+</script>
 
 {{- end }}

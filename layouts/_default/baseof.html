@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default " auto" }}">
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
 
 <head>
     {{- partial "head.html" . }}
@@ -8,12 +8,29 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="
+<body class="matrix-body
 {{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) -}}
-{{- print " list" -}} {{- end -}} {{- if eq site.Params.defaultTheme `dark` -}} {{- print " dark" }} {{- end -}} " id="
-    top">
+{{- print " list" -}}
+{{- end -}}
+{{- if eq site.Params.defaultTheme `dark` -}}
+{{- print " dark" }}
+{{- end -}}
+{{- if .IsHome -}}
+{{- print " matrix-home" -}}
+{{- else -}}
+{{- print " matrix-internal" -}}
+{{- end -}}
+" id="top">
+
+    {{- if not .IsHome }}
+    <!-- Matrix Background for Internal Pages (Static) -->
+    <div class="matrix-internal-bg">
+        <div class="matrix-static-pattern"></div>
+    </div>
+    {{- end }}
+
     {{- partialCached "header.html" . .Page -}}
-    <main class="main">
+    <main class="main matrix-main">
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}
