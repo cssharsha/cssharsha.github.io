@@ -1,0 +1,172 @@
+{{- define "main" }}
+
+{{- if not .IsHome | and .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>
+    {{ .Title }}
+    {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+    {{- with .OutputFormats.Get "rss" }}
+    <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+{{- end }}
+
+{{- /* Category filter (auto-built from taxonomies; "All" + one per category). */ -}}
+<style>
+  .post-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0 0 1.5rem; }
+  .post-controls .sep { flex: 1 1 auto; }
+  .post-controls .label { opacity: .6; font-size: .8rem; }
+  .post-filter, .post-sort { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+  .pill { background: transparent; border: 1px solid var(--matrix-green, #00a82b); color: var(--matrix-green, #00a82b); padding: .3rem .9rem; border-radius: 4px; cursor: pointer; font: inherit; font-size: .85rem; transition: background .15s, color .15s; }
+  .pill:hover { background: rgba(0, 168, 43, .12); }
+  .pill.active { background: var(--matrix-green, #00a82b); color: #050608; }
+</style>
+<div class="post-controls">
+  <div class="post-filter" id="post-filter">
+    <button class="pill active" data-filter="all">all</button>
+    {{- range $name, $pages := site.Taxonomies.categories }}
+    <button class="pill" data-filter="{{ $name }}">{{ $name }}</button>
+    {{- end }}
+  </div>
+  <span class="sep"></span>
+  <div class="post-sort" id="post-sort">
+    <button class="pill active" data-sort="desc">newest</button>
+    <button class="pill" data-sort="asc">oldest</button>
+    <button class="pill" data-sort="random">random</button>
+  </div>
+</div>
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+{{- $pages := union .RegularPages .Sections }}
+{{- $paginator := .Paginate $pages }}
+
+<div id="posts-list">
+{{- range $index, $page := $paginator.Pages }}
+{{- $cats := "" }}
+{{- range .Params.categories }}{{ $cats = printf "%s%s " $cats (. | urlize) }}{{ end }}
+<article class="post-entry" data-categories="{{ $cats }}" data-date="{{ .Date.Format "2006-01-02" }}">
+  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      {{- .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h2>
+  </header>
+  {{- if (ne (.Param "hideSummary") true) }}
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  {{- end }}
+  {{- if not (.Param "hideMeta") }}
+  <footer class="entry-footer">
+    {{- partial "post_meta.html" . -}}
+  </footer>
+  {{- end }}
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+      «&nbsp;{{ i18n "prev_page" }}&nbsp;
+      {{- if (.Param "ShowPageNums") }}
+      {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
+      {{- end }}
+    </a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+      {{- i18n "next_page" }}&nbsp;
+      {{- if (.Param "ShowPageNums") }}
+      {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
+      {{- end }}&nbsp;»
+    </a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+<script>
+  (function () {
+    var list = document.getElementById('posts-list');
+    if (!list) return;
+    var filterBar = document.getElementById('post-filter');
+    var sortBar = document.getElementById('post-sort');
+
+    if (filterBar) {
+      var fbtns = filterBar.querySelectorAll('.pill');
+      filterBar.addEventListener('click', function (e) {
+        var btn = e.target.closest('.pill');
+        if (!btn) return;
+        fbtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.getAttribute('data-filter');
+        list.querySelectorAll('article.post-entry').forEach(function (p) {
+          var cats = (p.getAttribute('data-categories') || '').trim().split(/\s+/);
+          p.style.display = (f === 'all' || cats.indexOf(f) !== -1) ? '' : 'none';
+        });
+      });
+    }
+
+    if (sortBar) {
+      var sbtns = sortBar.querySelectorAll('.pill');
+      sortBar.addEventListener('click', function (e) {
+        var btn = e.target.closest('.pill');
+        if (!btn) return;
+        sbtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var dir = btn.getAttribute('data-sort');
+        var arr = Array.prototype.slice.call(list.querySelectorAll('article.post-entry'));
+        if (dir === 'random') {
+          for (var i = arr.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+          }
+        } else {
+          arr.sort(function (a, b) {
+            var da = a.getAttribute('data-date'), db = b.getAttribute('data-date');
+            if (da === db) return 0;
+            return (dir === 'asc') === (da < db) ? -1 : 1;
+          });
+        }
+        arr.forEach(function (el) { list.appendChild(el); });
+      });
+    }
+  })();
+</script>
+
+{{- end }}{{- /* end main */ -}}

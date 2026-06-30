@@ -12,3 +12,19 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{{ $favicon192.RelPermalink }}">
     <link rel="icon" type="image/png" sizes="512x512" href="{{ $favicon512.RelPermalink }}">
 {{ end }}
+{{- /* Math (only on pages with `math: true`). Macros mirror rmath inline_macros.MACROS. */ -}}
+{{- if .Param "math" }}
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams',
+      macros: {G:"\\mathcal{G}",M:"\\mathcal{M}",N:"\\mathcal{N}",X:"\\mathcal{X}",Y:"\\mathcal{Y}",Z:"\\mathcal{Z}",E:"\\mathcal{E}",V:"\\mathcal{V}",v:"\\mathcal{v}",SO:"\\mathcal{SO}",SE:"\\mathcal{SE}",SU:"\\mathcal{SU}",so:"\\mathfrak{so}",se:"\\mathfrak{se}",gl:"\\mathfrak{gl}",m:"\\mathfrak{m}",sln:"\\mathfrak{sl}",Exp:"\\operatorname{Exp}",Log:"\\operatorname{Log}",Ad:"\\operatorname{Ad}",ad:"\\operatorname{ad}",Hat:["{#1}^{\\wedge}",1],Vee:["{#1}^{\\mathord{\\unicode{x2228}}}",1],skewm:["[#1]_{\\times}",1],bp:"\\boxplus",bm:"\\boxminus",norm:["\\left\\lVert #1 \\right\\rVert",1],inner:["\\langle #1, #2 \\rangle",2],inners:["\\langle #1 \\rangle",1],T:"^{\\top}",inv:"^{-1}",TM:"T\\mathcal{M}",TeM:"T_{\\mathcal{E}}\\mathcal{M}",TXM:"T_{\\mathcal{X}}\\mathcal{M}",R:"\\mathbb{R}",Rm:"\\R^\\mathcal{m}",jac:["\\frac{\\partial #1}{\\partial #2}",2],Rot:"\\mathbf{R}",vx:"\\mathbf{x}",defeq:"\\triangleq",opd:"\\mathbin{\\overset{\\diamond}{\\oplus}}",omd:"\\mathbin{\\overset{\\diamond}{\\ominus}}"}
+    },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{{- end }}

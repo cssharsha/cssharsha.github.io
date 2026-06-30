@@ -1,9 +1,10 @@
-baseURL = 'https://cssharsha.github.io/'
+baseURL = 'https://rant.sreesmere.com/'
 languageCode = 'en-us'
 title = 'sreesmere.com'
 theme = 'PaperMod'
 
 [params]
+    ShowLastMod = true
     [params.homeInfoParams]
     Title = "Into the messy beads in sreesmere"
     Content = "I try to help robots answer where am I question. In my spare time I read a lot of SFF, brew some beer, hike mounds and run roads. I used to have one but am reopning the dump yard again for my rants after a long time. What is sreesmere you ask? Well...its cosmere but with sree. Get it? Anyways there's a link to my goodreads profile if you haven't noticed. 👾🕸️"
@@ -40,3 +41,16 @@ theme = 'PaperMod'
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+# Math: protect $...$ / $$...$$ from Goldmark so MathJax (see
+# layouts/partials/extend_head.html) renders them. Needs Hugo >= 0.122.
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['$$', '$$'], ['\[', '\]']]
+          inline = [['$', '$'], ['\(', '\)']]
+    [markup.goldmark.renderer]
+      unsafe = true

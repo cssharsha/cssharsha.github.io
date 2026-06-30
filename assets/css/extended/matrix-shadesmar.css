@@ -1,13 +1,13 @@
 /* Matrix-Shadesmar Theme */
 :root {
-    --matrix-green: #00ff41;
+    --matrix-green: #00a82b;
     --matrix-dark-green: #008f11;
     --shadesmar-blue: #4a90e2;
     --shadesmar-purple: #8b5cf6;
     --shadesmar-gold: #fbbf24;
     --shadesmar-silver: #e5e7eb;
-    --matrix-bg: #0d1117;
-    --matrix-text: #00ff41;
+    --matrix-bg: #050608;
+    --matrix-text: #00a82b;
     --orb-glow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
 }
 
@@ -30,7 +30,7 @@
     font-size: 16px;
     color: var(--matrix-green);
     white-space: nowrap;
-    opacity: 0.8;
+    opacity: 0.45;
     animation: matrix-fall linear infinite;
 }
 
@@ -76,12 +76,12 @@
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--matrix-green);
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 20px rgba(0, 168, 43, 0.3);
     transition: all 0.3s ease;
 }
 
 .profile-pic:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+    box-shadow: 0 0 30px rgba(0, 168, 43, 0.5);
     transform: scale(1.05);
 }
 
@@ -138,7 +138,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 168, 43, 0.1);
     border: 1px solid var(--matrix-green);
     color: var(--matrix-green);
     text-decoration: none;
@@ -147,8 +147,8 @@
 }
 
 .hero-social-links a:hover {
-    background: rgba(0, 255, 65, 0.2);
-    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.2);
+    box-shadow: 0 0 20px rgba(0, 168, 43, 0.3);
     transform: scale(1.1);
 }
 
@@ -266,8 +266,8 @@
 
 .category-card,
 .project {
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.05);
+    border: 1px solid rgba(0, 168, 43, 0.2);
     border-radius: 8px;
     padding: 1.5rem;
     transition: all 0.3s ease;
@@ -284,7 +284,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 168, 43, 0.1), transparent);
     transition: left 0.5s ease;
 }
 
@@ -295,9 +295,9 @@
 
 .category-card:hover,
 .project:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 30px rgba(0, 168, 43, 0.2);
     border-color: var(--matrix-green);
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 168, 43, 0.1);
     transform: translateY(-5px);
 }
 
@@ -308,12 +308,12 @@
 }
 
 .post-count {
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
     font-size: 0.9rem;
 }
 
 .project p {
-    color: rgba(0, 255, 65, 0.8);
+    color: rgba(0, 168, 43, 0.8);
     font-size: 0.9rem;
 }
 
@@ -322,7 +322,7 @@
 }
 
 .small-icons a {
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
 }
 
 .small-icons a:hover {
@@ -336,17 +336,17 @@
     align-items: center;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-    border-top: 1px solid rgba(0, 255, 65, 0.1);
+    border-top: 1px solid rgba(0, 168, 43, 0.1);
     font-size: 0.75rem;
-    color: rgba(0, 255, 65, 0.6);
+    color: rgba(0, 168, 43, 0.6);
 }
 
 .project-language {
-    background: rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.2);
     color: var(--matrix-green);
     padding: 0.15rem 0.4rem;
     border-radius: 8px;
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     font-weight: 500;
     font-size: 0.7rem;
 }
@@ -368,14 +368,14 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: rgba(0, 255, 65, 0.1);
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.1);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     transition: all 0.3s ease;
     font-size: 0.8rem;
 }
 
 .small-icons a:hover {
-    background: rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.2);
     transform: scale(1.05);
 }
 
@@ -393,8 +393,8 @@
 .matrix-internal .matrix-header {
     background: rgba(13, 17, 23, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
-    box-shadow: 0 2px 20px rgba(0, 255, 65, 0.1);
+    border-bottom: 1px solid rgba(0, 168, 43, 0.3);
+    box-shadow: 0 2px 20px rgba(0, 168, 43, 0.1);
 }
 
 .matrix-nav {
@@ -424,11 +424,11 @@
     width: auto;
     margin-right: 0.75rem;
     transition: all 0.3s ease;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+    filter: drop-shadow(0 0 10px rgba(0, 168, 43, 0.5));
 }
 
 .matrix-logo-link:hover .matrix-logo-image {
-    filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.8));
+    filter: drop-shadow(0 0 20px rgba(0, 168, 43, 0.8));
     transform: scale(1.1);
 }
 
@@ -457,7 +457,7 @@
 }
 
 .matrix-menu-link {
-    color: rgba(0, 255, 65, 0.8) !important;
+    color: rgba(0, 168, 43, 0.8) !important;
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -473,7 +473,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 168, 43, 0.1), transparent);
     transition: left 0.5s ease;
 }
 
@@ -483,8 +483,8 @@
 
 .matrix-menu-link:hover {
     color: var(--matrix-green) !important;
-    background: rgba(0, 255, 65, 0.1);
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.1);
+    box-shadow: 0 0 10px rgba(0, 168, 43, 0.2);
     text-shadow: 0 0 5px var(--matrix-green);
 }
 
@@ -495,8 +495,8 @@
 }
 
 .matrix-theme-toggle {
-    background: rgba(0, 255, 65, 0.1);
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.1);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -509,8 +509,8 @@
 }
 
 .matrix-theme-toggle:hover {
-    background: rgba(0, 255, 65, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.2);
+    box-shadow: 0 0 15px rgba(0, 168, 43, 0.3);
     transform: scale(1.1);
 }
 
@@ -523,11 +523,11 @@
 .matrix-lang-switch {
     display: flex;
     gap: 0.5rem;
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
 }
 
 .matrix-lang-switch a {
-    color: rgba(0, 255, 65, 0.7) !important;
+    color: rgba(0, 168, 43, 0.7) !important;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -609,9 +609,9 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 25% 25%, rgba(0, 168, 43, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0, 168, 43, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 168, 43, 0.03) 0%, transparent 50%);
     background-size: 400px 400px, 600px 600px, 800px 800px;
     background-position: 0 0, 200px 200px, 400px 400px;
     opacity: 0.3;
@@ -632,8 +632,8 @@ body {
     text-align: center;
     margin-bottom: 3rem;
     padding: 2rem 0;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-    background: rgba(0, 255, 65, 0.02);
+    border-bottom: 1px solid rgba(0, 168, 43, 0.2);
+    background: rgba(0, 168, 43, 0.02);
     border-radius: 8px;
 }
 
@@ -655,15 +655,15 @@ body {
 }
 
 .matrix-internal .post-description {
-    color: rgba(0, 255, 65, 0.8);
+    color: rgba(0, 168, 43, 0.8);
     font-size: 1.1rem;
     line-height: 1.6;
 }
 
 /* Blog Post Entries Styling */
 .matrix-internal .post-entry {
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.05);
+    border: 1px solid rgba(0, 168, 43, 0.2);
     border-radius: 8px;
     margin-bottom: 2rem;
     padding: 2rem;
@@ -680,7 +680,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 168, 43, 0.1), transparent);
     transition: left 0.5s ease;
 }
 
@@ -689,9 +689,9 @@ body {
 }
 
 .matrix-internal .post-entry:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 30px rgba(0, 168, 43, 0.2);
     border-color: var(--matrix-green);
-    background: rgba(0, 255, 65, 0.08);
+    background: rgba(0, 168, 43, 0.08);
     transform: translateY(-5px);
 }
 
@@ -703,23 +703,23 @@ body {
 }
 
 .matrix-internal .entry-content {
-    color: rgba(0, 255, 65, 0.9);
+    color: rgba(0, 168, 43, 0.9);
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
 }
 
 .matrix-internal .entry-footer {
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
     font-size: 0.9rem;
-    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-top: 1px solid rgba(0, 168, 43, 0.2);
     padding-top: 1rem;
 }
 
 /* Single Post Page Styling */
 .matrix-internal .post-single {
-    background: rgba(0, 255, 65, 0.03);
-    border: 1px solid rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.03);
+    border: 1px solid rgba(0, 168, 43, 0.2);
     border-radius: 12px;
     padding: 3rem;
     margin: 2rem 0;
@@ -730,7 +730,7 @@ body {
     text-align: center;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 168, 43, 0.2);
 }
 
 .matrix-internal .post-title {
@@ -742,13 +742,13 @@ body {
 }
 
 .matrix-internal .post-meta {
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
     font-size: 1rem;
     margin-top: 1rem;
 }
 
 .matrix-internal .post-content {
-    color: rgba(0, 255, 65, 0.9);
+    color: rgba(0, 168, 43, 0.9);
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 3rem;
@@ -777,12 +777,12 @@ body {
 
 .matrix-internal .post-content a:hover {
     text-shadow: 0 0 10px var(--matrix-green);
-    color: #00ff41;
+    color: #00a82b;
 }
 
 .matrix-internal .post-content code {
-    background: rgba(0, 255, 65, 0.1);
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.1);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     border-radius: 4px;
     padding: 0.2rem 0.4rem;
     font-family: 'Courier New', monospace;
@@ -790,8 +790,8 @@ body {
 }
 
 .matrix-internal .post-content pre {
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.05);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     border-radius: 8px;
     padding: 1rem;
     overflow-x: auto;
@@ -802,7 +802,7 @@ body {
     border-left: 4px solid var(--matrix-green);
     padding-left: 1rem;
     margin-left: 0;
-    background: rgba(0, 255, 65, 0.05);
+    background: rgba(0, 168, 43, 0.05);
     padding: 1rem;
     border-radius: 0 8px 8px 0;
 }
@@ -821,19 +821,19 @@ body {
 
 .matrix-internal .post-tags a {
     display: inline-block;
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 168, 43, 0.1);
     color: var(--matrix-green);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     text-decoration: none;
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     transition: all 0.3s ease;
     font-size: 0.9rem;
 }
 
 .matrix-internal .post-tags a:hover {
-    background: rgba(0, 255, 65, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.2);
+    box-shadow: 0 0 15px rgba(0, 168, 43, 0.3);
     transform: scale(1.05);
 }
 
@@ -844,8 +844,8 @@ body {
     align-items: center;
     margin: 3rem 0;
     padding: 2rem;
-    background: rgba(0, 255, 65, 0.05);
-    border: 1px solid rgba(0, 255, 65, 0.2);
+    background: rgba(0, 168, 43, 0.05);
+    border: 1px solid rgba(0, 168, 43, 0.2);
     border-radius: 8px;
 }
 
@@ -853,21 +853,21 @@ body {
     color: var(--matrix-green);
     text-decoration: none;
     padding: 0.8rem 1.5rem;
-    border: 1px solid rgba(0, 255, 65, 0.3);
+    border: 1px solid rgba(0, 168, 43, 0.3);
     border-radius: 4px;
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(0, 168, 43, 0.1);
     transition: all 0.3s ease;
 }
 
 .matrix-internal .pagination a:hover {
-    background: rgba(0, 255, 65, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    background: rgba(0, 168, 43, 0.2);
+    box-shadow: 0 0 15px rgba(0, 168, 43, 0.3);
     text-shadow: 0 0 10px var(--matrix-green);
 }
 
 /* Breadcrumbs Styling */
 .matrix-internal .breadcrumbs {
-    color: rgba(0, 255, 65, 0.7);
+    color: rgba(0, 168, 43, 0.7);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
